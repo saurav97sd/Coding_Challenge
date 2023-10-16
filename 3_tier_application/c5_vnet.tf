@@ -19,7 +19,7 @@ resource "azurerm_subnet" "fe-subnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.0.0/26"]
-  service_endpoints = ["Microsoft.Web"]
+  service_endpoints    = ["Microsoft.Web"]
 
 }
 
@@ -29,6 +29,6 @@ resource "azurerm_subnet" "be-subnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.0.64/26"]
-  service_endpoints = ["Microsoft.Sql"]
+  service_endpoints    = ["Microsoft.Sql"]
 
 }

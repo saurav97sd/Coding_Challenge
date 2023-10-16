@@ -26,7 +26,7 @@ resource "azurerm_mssql_database" "fg-database" {
 
   tags = {
     Application = "3tier_app"
-    Env = "Prod"
+    Env         = "Prod"
   }
 }
 

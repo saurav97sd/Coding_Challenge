@@ -4,20 +4,20 @@
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_web_app#example-usage
 
 resource "azurerm_linux_web_app" "fe-webapp" {
-  name                  = "fitnessgeek"
-  location              = azurerm_resource_group.rg.location
-  resource_group_name   = azurerm_resource_group.rg.name
-  service_plan_id       = azurerm_service_plan.fe-asp.id
-  https_only            = true
-  site_config { 
+  name                = "fitnessgeek"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  service_plan_id     = azurerm_service_plan.fe-asp.id
+  https_only          = true
+  site_config {
     minimum_tls_version = "1.2"
-    always_on = true
+    always_on           = true
 
     application_stack {
       node_version = "16-lts"
     }
   }
-  
+
 }
 
 # Backend
@@ -47,19 +47,19 @@ resource "azurerm_linux_function_app" "be-fnapp" {
 
   site_config {
 
-  ip_restriction {
-          virtual_network_subnet_id = azurerm_subnet.fe-subnet.id
-          priority = 100
-          name = "Frontend access only"
-           }
-  application_stack {
+    ip_restriction {
+      virtual_network_subnet_id = azurerm_subnet.fe-subnet.id
+      priority                  = 100
+      name                      = "Frontend access only"
+    }
+    application_stack {
       python_version = 3.8
     }
   }
 
- depends_on = [
-   azurerm_storage_account.fn-storageaccount
- ]
+  depends_on = [
+    azurerm_storage_account.fn-storageaccount
+  ]
 }
 
 #vnet integration of backend functions
