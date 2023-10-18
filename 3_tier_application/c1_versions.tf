@@ -6,6 +6,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
+      # Taking latest version of arure provider
       version = "~> 3.0"
     }
   }
